@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/dao-starter/dao-starter.iml" filepath="$PROJECT_DIR$/dao-starter/dao-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/msc_portal.iml" filepath="$PROJECT_DIR$/msc_portal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/msc_portal-app/msc_portal-app.iml" filepath="$PROJECT_DIR$/msc_portal-app/msc_portal-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/msc_portal-client/msc_portal-client.iml" filepath="$PROJECT_DIR$/msc_portal-client/msc_portal-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/msc_portal-controller/msc_portal-controller.iml" filepath="$PROJECT_DIR$/msc_portal-controller/msc_portal-controller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/msc_portal-domain/msc_portal-domain.iml" filepath="$PROJECT_DIR$/msc_portal-domain/msc_portal-domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/msc_portal-infrastructure/msc_portal-infrastructure.iml" filepath="$PROJECT_DIR$/msc_portal-infrastructure/msc_portal-infrastructure.iml" />
+      <module fileurl="file://$PROJECT_DIR$/msc_portal_commons/msc_portal_commons.iml" filepath="$PROJECT_DIR$/msc_portal_commons/msc_portal_commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/msc_portal_domain_starter/msc_portal_domain_starter.iml" filepath="$PROJECT_DIR$/msc_portal_domain_starter/msc_portal_domain_starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatis-plus-generator-ui/mybatis-plus-generator-ui.iml" filepath="$PROJECT_DIR$/mybatis-plus-generator-ui/mybatis-plus-generator-ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/start/start.iml" filepath="$PROJECT_DIR$/start/start.iml" />
+    </modules>
+  </component>
+</project>
