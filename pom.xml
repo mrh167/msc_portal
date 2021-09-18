@@ -133,6 +133,7 @@
                 <artifactId>msc_portal_domain_starter</artifactId>
                 <version>1.0.0-SNAPSHOT</version>
             </dependency>
+
             <!-- Misc End -->
         </dependencies>
     </dependencyManagement>
@@ -169,6 +170,5 @@
         <module>msc_portal_domain_starter</module>
         <module>dao-starter</module>
         <module>msc_portal_commons</module>
-        <module>mybatis-plus-generator-ui</module>
     </modules>
 </project>
