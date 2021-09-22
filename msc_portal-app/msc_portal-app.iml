@@ -41,8 +41,6 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-jcl:5.1.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: javax.servlet:javax.servlet-api:4.0.1" level="project" />
     <orderEntry type="module" module-name="msc_portal_commons" />
-    <orderEntry type="library" name="Maven: org.springframework.session:spring-session-data-redis:2.1.4.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.session:spring-session-core:2.1.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba.cola:cola-core:2.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.reflections:reflections:0.9.10" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.findbugs:annotations:2.0.1" level="project" />

@@ -56,7 +56,7 @@ public class SysUserController extends AbstractController {
         return sysUserGateWay.checkAccount(account);
     }
 
-    @ApiOperation("校验账号")
+    @ApiOperation("添加用户")
     @PostMapping(value = "/addUser")
     public SingleResponse addUser(@RequestBody AddUserCmd addUserCmd){
         return sysUserService.addUser(addUserCmd);

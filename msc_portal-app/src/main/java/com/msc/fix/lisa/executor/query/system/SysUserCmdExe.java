@@ -3,8 +3,11 @@ package com.msc.fix.lisa.executor.query.system;
 import com.alibaba.cola.command.Command;
 import com.alibaba.cola.command.CommandExecutorI;
 import com.alibaba.cola.dto.SingleResponse;
+import com.msc.fix.lisa.base.YnValueEnum;
 import com.msc.fix.lisa.common.BusinessException;
 import com.msc.fix.lisa.common.security.JwtTokenUtil;
+import com.msc.fix.lisa.domain.entity.system.SysUser;
+import com.msc.fix.lisa.domain.gateway.system.SysUserGateWay;
 import com.msc.fix.lisa.dto.system.SysUserCmd;
 import com.msc.fix.lisa.dto.system.cto.SysUserCo;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +38,9 @@ public class SysUserCmdExe implements CommandExecutorI<SingleResponse<SysUserCo>
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private SysUserGateWay sysUserGateWay;
+
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
@@ -44,7 +50,7 @@ public class SysUserCmdExe implements CommandExecutorI<SingleResponse<SysUserCo>
 
     @Override
     public SingleResponse<SysUserCo> execute(SysUserCmd cmd) {
-        String username = cmd.getUsername();
+        String username = cmd.getAccount();
         String password = cmd.getPassword();
 //        String code = cmd.getCode();
 //        String captcha = cmd.getCaptcha();
@@ -55,7 +61,9 @@ public class SysUserCmdExe implements CommandExecutorI<SingleResponse<SysUserCo>
         if (userDetails == null || !passwordEncoder.matches(password,userDetails.getPassword())){
             throw new BusinessException("用户名或密码错误！！！");
         }
-        if (!userDetails.isEnabled()){
+
+        SysUser sysUser = sysUserGateWay.selectByName(cmd.getAccount());
+        if (sysUser.getStatus().equals(YnValueEnum.getNoCode())){
             throw new BusinessException("账号被禁用，请联系管理员！！！");
         }
 

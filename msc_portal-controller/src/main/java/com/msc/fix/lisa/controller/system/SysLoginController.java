@@ -2,6 +2,10 @@ package com.msc.fix.lisa.controller.system;
 
 import com.alibaba.cola.dto.SingleResponse;
 import com.msc.fix.lisa.api.system.SysLoginService;
+import com.msc.fix.lisa.base.AbstractController;
+import com.msc.fix.lisa.domain.common.utils.BeanUtils;
+import com.msc.fix.lisa.domain.entity.system.SysUser;
+import com.msc.fix.lisa.domain.gateway.system.SysUserGateWay;
 import com.msc.fix.lisa.dto.system.SysUserCmd;
 import com.msc.fix.lisa.dto.system.cto.SysUserCo;
 import io.swagger.annotations.Api;
@@ -25,10 +29,13 @@ import javax.validation.Valid;
 @Api(tags = "登录",produces = "用户登录页面")
 @RequestMapping("/api")
 @RestController
-public class SysLoginController {
+public class SysLoginController extends AbstractController {
 
     @Autowired
     private SysLoginService sysLoginService;
+
+    @Autowired
+    private SysUserGateWay sysUserGateWay;
 
 
     @ApiOperation(value = "登录接口")
@@ -43,12 +50,12 @@ public class SysLoginController {
     @ApiOperation(value = "获取用户信息")
     @PostMapping(value = "/getInfo")
     public SingleResponse<SysUserCo> getInfo(){
-        SysUserCo sysUserQry = new SysUserCo();
-        sysUserQry.setAccount("admin");
-        sysUserQry.setUsername("admin");
-        if (sysUserQry ==null) {
+
+        SysUser sysUser = sysUserGateWay.selectByName(getPin());
+        if (sysUser == null){
             return null;
         }
-        return SingleResponse.of(sysUserQry);
+        SysUserCo sysUserCo = BeanUtils.convert(sysUser, SysUserCo.class);
+        return SingleResponse.of(sysUserCo);
     }
 }

@@ -16,12 +16,10 @@ import lombok.experimental.Accessors;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
-@ApiModel(value = "AdminLogin对象",description = "")
 public class SysUserCmd extends AbstractCommand {
 
     @ApiModelProperty(value = "用户名",required = true)
-    private String username;
+    private String account;
 
     @ApiModelProperty(value = "密码",required = true)
     private String password;

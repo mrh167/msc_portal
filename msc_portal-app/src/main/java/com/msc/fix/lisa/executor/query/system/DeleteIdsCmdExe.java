@@ -16,6 +16,7 @@ import com.msc.fix.lisa.repository.db.dbdo.SysUserDo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -34,11 +35,15 @@ public class DeleteIdsCmdExe implements CommandExecutorI<SingleResponse, DeleteI
 
     @Override
     public SingleResponse execute(DeleteIdsCmd deleteIdsCmd) {
+        // 当前登录人
+        String idsCmdPin = deleteIdsCmd.getPin();
         Map<Integer, String> dataKeyMap = deleteIdsCmd.getKeyList().stream().collect(Collectors.toMap(DataKey::getId, DataKey::getAccount, (k, k2) -> k2));
         if (dataKeyMap.keySet().isEmpty()) {
             throw new BusinessException("id参数为空");
         }
         List<SysUser> account = sysUserGateWay.selectByIds(dataKeyMap.keySet());
+
+
         //如果数据为空
         if (account.isEmpty()) {
             throw new BusinessException("数据为空!!!");
@@ -49,7 +54,13 @@ public class DeleteIdsCmdExe implements CommandExecutorI<SingleResponse, DeleteI
                 throw new BusinessException("account的数据未找到!!!!");
             }
         });
-//        sysUserGateWay.deleteBatch(account,deleteIdsCmd.getPin());
+
+        dataKeyMap.forEach((ids,acc)->{
+            SysUser adminAcc = sysUserGateWay.selectByName(acc);
+            if (idsCmdPin.equals(adminAcc.getAccount()) && adminAcc != null) {
+                throw new BusinessException("当前登录账号不可删除!!!!");
+            }
+        });
         List<SysUser> updateList = new ArrayList<>();
         Date now = new Date();
         account.forEach(id -> {

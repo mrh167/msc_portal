@@ -44,16 +44,16 @@ public class SysUser implements Serializable,UserDetails {
     private Integer id;
 
     /**
-     * 角色编码
+     * 账号
      */
     private String account;
     /**
-     * 账号类型编码
+     * 密码
      */
     private String password;
 
     /**
-     * 角色名称
+     * 用户名
      */
 //    @TableField(insertStrategy = FieldStrategy.IGNORED)
     private String username;
@@ -69,12 +69,12 @@ public class SysUser implements Serializable,UserDetails {
     private String email;
 
     /**
-     * 状态: 0禁用, 1启用
+     * 电话
      */
     private String phone;
 
     /**
-     * 描述说明
+     * 状态
      */
     private Integer status;
 
@@ -138,7 +138,7 @@ public class SysUser implements Serializable,UserDetails {
 
     @Override
     public String getUsername() {
-        return this.username;
+        return this.account;
     }
 
 

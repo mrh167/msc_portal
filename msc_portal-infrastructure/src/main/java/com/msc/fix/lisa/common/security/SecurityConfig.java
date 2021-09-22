@@ -9,6 +9,7 @@ import com.msc.fix.lisa.filter.JwtAuthenticationTokenFilter;
 import com.msc.fix.lisa.handler.RestAccessDeniedHandler;
 import com.msc.fix.lisa.handler.RestAuthorizationEntryPoint;
 import com.msc.fix.lisa.handler.UserLoginSuccessHandler;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,6 +34,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  */
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled = true)
+@Slf4j
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //    @Autowired
 //    private IAdminService adminService;
@@ -110,51 +112,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler)
                 .authenticationEntryPoint(authorizationEntryPoint);
-
-//        http.authorizeRequests()
-//                .antMatchers("/admin/**").hasRole("admin")
-//                .antMatchers("/user/**").hasAnyRole("admin", "user")
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .loginProcessingUrl("/api/login")
-//                .successHandler((req, resp, authentication) -> {
-//                    Object principal = authentication.getPrincipal();
-//                    resp.setContentType("application/json;charset=utf-8");
-//                    PrintWriter out = resp.getWriter();
-//                    out.write(new ObjectMapper().writeValueAsString(principal));
-//                    out.flush();
-//                    out.close();
-//                })
-//                .failureHandler((req, resp, e) -> {
-//                    resp.setContentType("application/json;charset=utf-8");
-//                    PrintWriter out = resp.getWriter();
-//                    out.write(e.getMessage());
-//                    out.flush();
-//                    out.close();
-//                })
-//                .permitAll()
-//                .and()
-//                .logout()
-//                .logoutUrl("/logout")
-//                .logoutSuccessHandler((req, resp, authentication) -> {
-//                    resp.setContentType("application/json;charset=utf-8");
-//                    PrintWriter out = resp.getWriter();
-//                    out.write("注销成功");
-//                    out.flush();
-//                    out.close();
-//                })
-//                .permitAll()
-//                .and()
-//                .csrf().disable().exceptionHandling()
-//                .authenticationEntryPoint((req, resp, authException) -> {
-//                            resp.setContentType("application/json;charset=utf-8");
-//                            PrintWriter out = resp.getWriter();
-//                            out.write("尚未登录，请先登录");
-//                            out.flush();
-//                            out.close();
-//                        }
-//                );
     }
 
     @Override
@@ -164,6 +121,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             SysUser sysUser = sysLoginGateway.getAdminByUserName(username);
             if (null != sysUser){
                 sysUser.setRoleList(sysLoginGateway.getRoles(sysUser.getId()));
+                log.info("账号信息为:=> {}",sysUser.toString());
                 return sysUser;
             }
             throw new UsernameNotFoundException("用户名或密码错误");
