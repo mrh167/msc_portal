@@ -2,6 +2,7 @@ package com.msc.fix.lisa.domain.gateway.system;
 
 import com.msc.fix.lisa.domain.entity.system.SysUser;
 import com.msc.fix.lisa.domain.entity.system.SysUserRole;
+import com.msc.fix.lisa.domain.entity.system.User;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
  */
 public interface SysLoginGateway {
 
-    SysUser getAdminByUserName(String username);
+    User getAdminByUserName(String username);
 
-    List<SysUserRole> getRoles(Integer id);
+    List<SysUserRole> getRoles(String account);
 }

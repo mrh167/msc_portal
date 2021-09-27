@@ -2,6 +2,7 @@ package com.msc.fix.lisa.handler;
 
 import com.msc.fix.lisa.common.security.JwtTokenUtil;
 import com.msc.fix.lisa.domain.entity.system.SysUser;
+import com.msc.fix.lisa.domain.entity.system.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -34,7 +35,7 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
         //登录成功后获取用户信息
-        SysUser sysUser = (SysUser) authentication.getPrincipal();
+        User sysUser = (User) authentication.getPrincipal();
         String token = jwtTokenUtil.generateToken(sysUser);
         response.addHeader(tokenHeader,tokenHead+" "+token);
     }

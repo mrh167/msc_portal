@@ -9,7 +9,7 @@
 package com.msc.fix.lisa.base;
 
 
-import com.msc.fix.lisa.domain.entity.system.SysUser;
+import com.msc.fix.lisa.domain.entity.system.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,7 +24,7 @@ public abstract class AbstractController {
 
     public String getPin() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        SysUser principal =(SysUser) authentication.getPrincipal();
+        User principal =(User) authentication.getPrincipal();
 
         log.info("用户信息为 => {}", principal.getUsername());
         return principal.getUsername();

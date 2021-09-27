@@ -2,6 +2,7 @@ package com.msc.fix.lisa.common.security;
 
 
 import com.msc.fix.lisa.domain.entity.system.SysUser;
+import com.msc.fix.lisa.domain.entity.system.User;
 import com.msc.fix.lisa.domain.gateway.system.SysLoginGateway;
 import com.msc.fix.lisa.filter.CustomFilter;
 import com.msc.fix.lisa.filter.CustomUrlDecisionManager;
@@ -118,9 +119,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public UserDetailsService userDetailsService(){
         return username -> {
-            SysUser sysUser = sysLoginGateway.getAdminByUserName(username);
+            User sysUser = sysLoginGateway.getAdminByUserName(username);
             if (null != sysUser){
-                sysUser.setRoleList(sysLoginGateway.getRoles(sysUser.getId()));
+                sysUser.setRoleList(sysLoginGateway.getRoles(sysUser.getAccount()));
                 log.info("账号信息为:=> {}",sysUser.toString());
                 return sysUser;
             }

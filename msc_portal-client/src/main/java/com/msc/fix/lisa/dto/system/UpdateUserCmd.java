@@ -25,6 +25,12 @@ public class UpdateUserCmd extends AbstractCommand {
     private String account;
 
     /**
+     * 账号
+     */
+    @ApiModelProperty(value = "密码")
+    private String password;
+
+    /**
      * 用户名
      */
     @ApiModelProperty(value = "用户名")

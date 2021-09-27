@@ -14,6 +14,7 @@ import com.msc.fix.lisa.common.enums.StatusEnums;
 import com.msc.fix.lisa.common.utils.SnowflakeUtil;
 import com.msc.fix.lisa.domain.common.utils.BeanUtils;
 import com.msc.fix.lisa.domain.entity.system.SysUser;
+import com.msc.fix.lisa.domain.entity.system.User;
 import com.msc.fix.lisa.domain.gateway.system.SysUserGateWay;
 import com.msc.fix.lisa.dto.system.AddUserCmd;
 import com.msc.fix.lisa.dto.system.SysUserQry;
@@ -67,18 +68,18 @@ public class SysUserGateWayImpl extends ServiceImpl<SysUserMapper,SysUser> imple
         return SingleResponse.buildSuccess();
     }
 
-    @Override
-    public SingleResponse checkAccount(String account) {
-        if (StringUtils.isEmpty(account)){
-            return null;
-        }
-        //校验账号是否重复添加或者已存在
-        String existAcc =  sysUserMapper.getAccount(account);
-        if (StringUtils.isNotBlank(existAcc)){
-            return SingleResponse.buildSuccess();
-        }
-        return SingleResponse.of(account);
-    }
+//    @Override
+//    public SingleResponse checkAccount(String account) {
+//        if (StringUtils.isEmpty(account)){
+//            return null;
+//        }
+//        //校验账号是否重复添加或者已存在
+//        String existAcc =  sysUserMapper.getAccount(account);
+//        if (StringUtils.isNotBlank(existAcc)){
+//            return SingleResponse.buildSuccess();
+//        }
+//        return SingleResponse.of(account);
+//    }
 
     @Override
     public SingleResponse addUser(AddUserCmd cmd) {
@@ -138,7 +139,12 @@ public class SysUserGateWayImpl extends ServiceImpl<SysUserMapper,SysUser> imple
     }
 
     @Override
-    public SysUser selectByName(String username) {
+    public SysUser selectByAccount(String username) {
+        return sysUserMapper.getAccount(username);
+    }
+
+    @Override
+    public User selectByName(String username) {
         return sysUserMapper.selectUser(username);
     }
 

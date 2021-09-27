@@ -4,6 +4,7 @@ import com.alibaba.cola.dto.SingleResponse;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.github.pagehelper.PageInfo;
 import com.msc.fix.lisa.domain.entity.system.SysUser;
+import com.msc.fix.lisa.domain.entity.system.User;
 import com.msc.fix.lisa.dto.system.AddUserCmd;
 import com.msc.fix.lisa.dto.system.SysUserQry;
 import com.msc.fix.lisa.dto.system.UpdateStatusCmd;
@@ -25,7 +26,7 @@ public interface SysUserGateWay extends IService<SysUser> {
 
     SingleResponse updateStatus(UpdateStatusCmd cmd);
 
-    SingleResponse checkAccount(String account);
+//    SingleResponse checkAccount(String account);
 
     SingleResponse addUser(AddUserCmd cmd);
 
@@ -34,7 +35,9 @@ public interface SysUserGateWay extends IService<SysUser> {
     SingleResponse deleteBatch(List<SysUser> account, String pin);
 
 
-    SysUser selectByName(String username);
+    SysUser selectByAccount(String username);
+
+    User selectByName(String username);
 
     int updateByName(SysUser sysUser);
 

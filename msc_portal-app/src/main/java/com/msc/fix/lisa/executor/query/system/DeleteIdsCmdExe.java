@@ -9,6 +9,7 @@ import com.msc.fix.lisa.common.BusinessException;
 import com.msc.fix.lisa.common.CommonUtil;
 import com.msc.fix.lisa.domain.common.utils.BeanUtils;
 import com.msc.fix.lisa.domain.entity.system.SysUser;
+import com.msc.fix.lisa.domain.entity.system.User;
 import com.msc.fix.lisa.domain.gateway.system.SysUserGateWay;
 import com.msc.fix.lisa.dto.DataKey;
 import com.msc.fix.lisa.dto.system.DeleteIdsCmd;
@@ -56,7 +57,7 @@ public class DeleteIdsCmdExe implements CommandExecutorI<SingleResponse, DeleteI
         });
 
         dataKeyMap.forEach((ids,acc)->{
-            SysUser adminAcc = sysUserGateWay.selectByName(acc);
+            User adminAcc = sysUserGateWay.selectByName(acc);
             if (idsCmdPin.equals(adminAcc.getAccount()) && adminAcc != null) {
                 throw new BusinessException("当前登录账号不可删除!!!!");
             }

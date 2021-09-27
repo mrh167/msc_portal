@@ -5,6 +5,7 @@ import com.msc.fix.lisa.api.system.SysLoginService;
 import com.msc.fix.lisa.base.AbstractController;
 import com.msc.fix.lisa.domain.common.utils.BeanUtils;
 import com.msc.fix.lisa.domain.entity.system.SysUser;
+import com.msc.fix.lisa.domain.entity.system.User;
 import com.msc.fix.lisa.domain.gateway.system.SysUserGateWay;
 import com.msc.fix.lisa.dto.system.SysUserCmd;
 import com.msc.fix.lisa.dto.system.cto.SysUserCo;
@@ -51,7 +52,7 @@ public class SysLoginController extends AbstractController {
     @PostMapping(value = "/getInfo")
     public SingleResponse<SysUserCo> getInfo(){
 
-        SysUser sysUser = sysUserGateWay.selectByName(getPin());
+        User sysUser = sysUserGateWay.selectByName(getPin());
         if (sysUser == null){
             return null;
         }

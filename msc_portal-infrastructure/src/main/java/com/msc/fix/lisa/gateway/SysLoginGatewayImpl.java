@@ -2,6 +2,7 @@ package com.msc.fix.lisa.gateway;
 
 import com.msc.fix.lisa.domain.entity.system.SysUser;
 import com.msc.fix.lisa.domain.entity.system.SysUserRole;
+import com.msc.fix.lisa.domain.entity.system.User;
 import com.msc.fix.lisa.domain.gateway.system.SysLoginGateway;
 import com.msc.fix.lisa.repository.db.mapper.SysRoleMapper;
 import com.msc.fix.lisa.repository.db.mapper.SysUserMapper;
@@ -27,12 +28,12 @@ public class SysLoginGatewayImpl implements SysLoginGateway {
     private SysRoleMapper sysRoleMapper;
 
     @Override
-    public SysUser getAdminByUserName(String username) {
+    public User getAdminByUserName(String username) {
         return sysUserMapper.selectUser(username);
     }
 
     @Override
-    public List<SysUserRole> getRoles(Integer id) {
-        return sysRoleMapper.getRoles(id);
+    public List<SysUserRole> getRoles(String account) {
+        return sysRoleMapper.getRoles(account);
     }
 }

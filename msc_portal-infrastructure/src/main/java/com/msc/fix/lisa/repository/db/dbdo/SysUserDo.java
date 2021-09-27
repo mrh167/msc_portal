@@ -69,12 +69,6 @@ public class SysUserDo extends BasePo implements Serializable {
     private String email;
 
     /**
-     * 手机号
-     */
-    @Column(name ="mobile")
-    private String mobile;
-
-    /**
      * 状态  0：禁用   1：正常
      */
     @Column(name ="status")

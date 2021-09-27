@@ -22,4 +22,6 @@ public interface SysUserService {
     SingleResponse deleteIds(DeleteIdsCmd deleteIds);
 
     SingleResponse<SysUserCo> editGetUser(UpdateUserCmd userCmd);
+
+    SingleResponse editUser(UpdateUserCmd updateUserCmd);
 }

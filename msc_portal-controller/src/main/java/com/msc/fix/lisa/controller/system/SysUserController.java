@@ -47,16 +47,17 @@ public class SysUserController extends AbstractController {
         updateStatusCmd.initUpdate(getPin());
         return sysUserService.updateStatus(updateStatusCmd);
     }
-
-    @ApiOperation("校验账号")
-    @GetMapping(value = "/checkAccount")
-    public SingleResponse checkAccount(String account){
-        return sysUserGateWay.checkAccount(account);
-    }
+//
+//    @ApiOperation("校验账号")
+//    @GetMapping(value = "/checkAccount")
+//    public SingleResponse checkAccount(String account){
+//        return sysUserGateWay.checkAccount(account);
+//    }
 
     @ApiOperation("添加用户")
     @PostMapping(value = "/addUser")
     public SingleResponse addUser(@RequestBody AddUserCmd addUserCmd){
+        addUserCmd.initCreate(getPin());
         return sysUserService.addUser(addUserCmd);
     }
 
@@ -75,5 +76,12 @@ public class SysUserController extends AbstractController {
     public SingleResponse<SysUserCo> editGetUser(UpdateUserCmd userCmd){
         userCmd.initUpdate(getPin());
         return sysUserService.editGetUser(userCmd);
+    }
+
+    @ApiOperation("用户信息编辑")
+    @PostMapping(value = "/editUser")
+    public SingleResponse editUser(@RequestBody UpdateUserCmd updateUserCmd) {
+        updateUserCmd.initUpdate(getPin());
+        return sysUserService.editUser(updateUserCmd);
     }
 }

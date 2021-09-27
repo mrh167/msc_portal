@@ -34,7 +34,7 @@
         </if>
     </sql>
 
-    <select id="selectUser" resultType="com.msc.fix.lisa.domain.entity.system.SysUser">
+    <select id="selectUser" resultType="com.msc.fix.lisa.domain.entity.system.User">
         SELECT
         <include refid="Base_Column_List"/>
         FROM sys_user
@@ -51,7 +51,7 @@
         <include refid="Base_pageList"/>
     </select>
 
-    <select id="getAccount" resultType="java.lang.String">
+    <select id="getAccount" resultType="com.msc.fix.lisa.domain.entity.system.SysUser">
         select
             <include refid="Base_Column_List"/>
         from  sys_user where yn = 1 and account=#{account}

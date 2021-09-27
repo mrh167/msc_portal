@@ -62,7 +62,7 @@ public class SysUserCmdExe implements CommandExecutorI<SingleResponse<SysUserCo>
             throw new BusinessException("用户名或密码错误！！！");
         }
 
-        SysUser sysUser = sysUserGateWay.selectByName(cmd.getAccount());
+        SysUser sysUser = sysUserGateWay.selectByAccount(cmd.getAccount());
         if (sysUser.getStatus().equals(YnValueEnum.getNoCode())){
             throw new BusinessException("账号被禁用，请联系管理员！！！");
         }

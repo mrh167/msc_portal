@@ -2,6 +2,7 @@ package com.msc.fix.lisa.repository.db.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.msc.fix.lisa.domain.entity.system.SysUser;
+import com.msc.fix.lisa.domain.entity.system.User;
 import com.msc.fix.lisa.dto.system.SysUserQry;
 
 import java.util.List;
@@ -16,9 +17,9 @@ import java.util.List;
  */
 public interface SysUserMapper extends BaseMapper<SysUser> {
 
-    SysUser selectUser(String username);
+    User selectUser(String username);
 
     List<SysUser> listPage(SysUserQry pageQry);
 
-    String getAccount(String account);
+    SysUser getAccount(String account);
 }

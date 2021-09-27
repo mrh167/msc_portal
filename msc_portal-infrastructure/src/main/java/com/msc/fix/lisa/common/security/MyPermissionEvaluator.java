@@ -1,8 +1,8 @@
 package com.msc.fix.lisa.common.security;
 
 import cn.hutool.core.collection.CollUtil;
-import com.msc.fix.lisa.domain.entity.system.SysUser;
 import com.msc.fix.lisa.domain.entity.system.SysUserRole;
+import com.msc.fix.lisa.domain.entity.system.User;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ import java.util.List;
 public class MyPermissionEvaluator implements PermissionEvaluator {
     @Override
     public boolean hasPermission(Authentication authentication, Object targetDomainObject, Object permission) {
-        SysUser principal = (SysUser) authentication.getPrincipal();
+        User principal = (User) authentication.getPrincipal();
         List<SysUserRole> roleList = principal.getRoleList();
         if (CollUtil.isNotEmpty(roleList)) {
             //&&StringUtils.equals(x.getCode(), (CharSequence) permission)

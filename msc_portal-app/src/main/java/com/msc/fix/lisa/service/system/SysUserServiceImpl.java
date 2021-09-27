@@ -47,4 +47,9 @@ public class SysUserServiceImpl implements SysUserService {
     public SingleResponse<SysUserCo> editGetUser(UpdateUserCmd userCmd) {
         return (SingleResponse<SysUserCo>) commandBusI.send(userCmd);
     }
+
+    @Override
+    public SingleResponse editUser(UpdateUserCmd updateUserCmd) {
+        return (SingleResponse) commandBusI.send(updateUserCmd);
+    }
 }

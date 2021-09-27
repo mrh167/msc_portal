@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 @Data
 @Table(name = "sys_user")
 @Slf4j
-public class SysUser implements Serializable,UserDetails {
+public class SysUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -81,86 +81,27 @@ public class SysUser implements Serializable,UserDetails {
     /**
      * 创建人
      */
-    @ApiModelProperty(hidden = true)
-//    @TableField(insertStrategy = FieldStrategy.IGNORED)
     private String createUser;
 
     /**
      * 修改人
      */
-    @ApiModelProperty(hidden = true)
-//    @TableField(insertStrategy = FieldStrategy.IGNORED)
     private String updateUser;
 
     /**
      * 创建时间
      */
-    @ApiModelProperty(hidden = true)
-//    @TableField(insertStrategy = FieldStrategy.IGNORED)
     private Date createTime;
 
     /**
      * 修改时间
      */
-    @ApiModelProperty(hidden = true)
-//    @TableField(insertStrategy = FieldStrategy.IGNORED)
     private Date updateTime;
 
     /**
      * 逻辑删除字段
      */
-    @ApiModelProperty(hidden = true)
-//    @TableField(insertStrategy = FieldStrategy.IGNORED)
     private Integer yn;
-
-    @Getter(AccessLevel.NONE)
-//    @TableField(insertStrategy = FieldStrategy.IGNORED)
-    private Integer enabled;
-
-    @ApiModelProperty(hidden = true)
-    @TableField(exist = false)
-    private List<SysUserRole> roleList;
-
-    @Override
-    @JsonDeserialize(using = CustomAuthorityDeserializer.class)
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<SimpleGrantedAuthority> authorities =
-                roleList.stream().map(role -> new SimpleGrantedAuthority("ROLE_"+role.getRoleCode()))
-                        .collect(Collectors.toList());
-        log.info("auth ==>{}",authorities);
-        return authorities;
-    }
-
-    @Override
-    public String getPassword() {
-        return this.password;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.account;
-    }
-
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 
     /**
      * 用户编码
