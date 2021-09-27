@@ -4,10 +4,7 @@ import com.alibaba.cola.command.CommandBusI;
 import com.alibaba.cola.dto.SingleResponse;
 import com.msc.fix.lisa.api.system.SysUserService;
 import com.msc.fix.lisa.base.PageResponse;
-import com.msc.fix.lisa.dto.system.AddUserCmd;
-import com.msc.fix.lisa.dto.system.DeleteIdsCmd;
-import com.msc.fix.lisa.dto.system.SysUserQry;
-import com.msc.fix.lisa.dto.system.UpdateStatusCmd;
+import com.msc.fix.lisa.dto.system.*;
 import com.msc.fix.lisa.dto.system.cto.SysUserCo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,5 +41,10 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public SingleResponse deleteIds(DeleteIdsCmd deleteIds) {
         return (SingleResponse) commandBusI.send(deleteIds);
+    }
+
+    @Override
+    public SingleResponse<SysUserCo> editGetUser(UpdateUserCmd userCmd) {
+        return (SingleResponse<SysUserCo>) commandBusI.send(userCmd);
     }
 }

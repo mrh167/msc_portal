@@ -15,5 +15,7 @@ public class UpdateStatusCmd extends AbstractCommand {
 
     private Long id;
 
+    private String account;
+
     private Integer status;
 }

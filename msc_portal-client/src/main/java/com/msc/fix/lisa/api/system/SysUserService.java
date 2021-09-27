@@ -2,10 +2,7 @@ package com.msc.fix.lisa.api.system;
 
 import com.alibaba.cola.dto.SingleResponse;
 import com.msc.fix.lisa.base.PageResponse;
-import com.msc.fix.lisa.dto.system.AddUserCmd;
-import com.msc.fix.lisa.dto.system.DeleteIdsCmd;
-import com.msc.fix.lisa.dto.system.SysUserQry;
-import com.msc.fix.lisa.dto.system.UpdateStatusCmd;
+import com.msc.fix.lisa.dto.system.*;
 import com.msc.fix.lisa.dto.system.cto.SysUserCo;
 
 /**
@@ -23,4 +20,6 @@ public interface SysUserService {
     SingleResponse addUser(AddUserCmd addUserCmd);
 
     SingleResponse deleteIds(DeleteIdsCmd deleteIds);
+
+    SingleResponse<SysUserCo> editGetUser(UpdateUserCmd userCmd);
 }

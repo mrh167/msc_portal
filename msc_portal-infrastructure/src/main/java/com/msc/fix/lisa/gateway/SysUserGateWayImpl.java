@@ -18,6 +18,7 @@ import com.msc.fix.lisa.domain.gateway.system.SysUserGateWay;
 import com.msc.fix.lisa.dto.system.AddUserCmd;
 import com.msc.fix.lisa.dto.system.SysUserQry;
 import com.msc.fix.lisa.dto.system.UpdateStatusCmd;
+import com.msc.fix.lisa.dto.system.cto.SysUserCo;
 import com.msc.fix.lisa.repository.db.dbdo.SysUserDo;
 import com.msc.fix.lisa.repository.db.mapper.SysUserMapper;
 import org.apache.commons.lang3.StringUtils;
@@ -57,6 +58,9 @@ public class SysUserGateWayImpl extends ServiceImpl<SysUserMapper,SysUser> imple
     public SingleResponse updateStatus(UpdateStatusCmd cmd) {
         UpdateWrapper<SysUser> wrapper = new UpdateWrapper<>();
         SysUser user = new SysUser();
+        if (cmd.getAccount().equals(cmd.getPin())){
+           throw new BusinessException("操作违规,不能操作当前登录账号!!!");
+        }
         user.setStatus(cmd.getStatus());
         wrapper.eq("id",cmd.getId()).eq("yn", YnValueEnum.getYesCode());
         sysUserMapper.update(user,wrapper);
@@ -87,7 +91,7 @@ public class SysUserGateWayImpl extends ServiceImpl<SysUserMapper,SysUser> imple
         user.setEmail(cmd.getEmail());
         user.setStatus(StatusEnums.USER_OPEN.getCode());
         user.setUserCode(SnowflakeUtil.genId());
-        CommonUtil.fillByCreate(new Date(),"maruihua",user);
+        CommonUtil.fillByCreate(new Date(),cmd.getPin(),user);
         SysUser sysUser = BeanUtils.convert(user, SysUser.class);
         this.save(sysUser);
 //        sysUserMapper.insert(sysUser);
@@ -147,4 +151,5 @@ public class SysUserGateWayImpl extends ServiceImpl<SysUserMapper,SysUser> imple
         SysUser user = BeanUtils.convert(userDo, SysUser.class);
         return sysUserMapper.update(user,sysUserUpdateWrapper);
     }
+
 }

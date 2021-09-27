@@ -7,6 +7,7 @@ import com.msc.fix.lisa.domain.entity.system.SysUser;
 import com.msc.fix.lisa.dto.system.AddUserCmd;
 import com.msc.fix.lisa.dto.system.SysUserQry;
 import com.msc.fix.lisa.dto.system.UpdateStatusCmd;
+import com.msc.fix.lisa.dto.system.cto.SysUserCo;
 
 import java.util.Collection;
 import java.util.List;
@@ -36,4 +37,5 @@ public interface SysUserGateWay extends IService<SysUser> {
     SysUser selectByName(String username);
 
     int updateByName(SysUser sysUser);
+
 }

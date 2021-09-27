@@ -5,10 +5,7 @@ import com.msc.fix.lisa.api.system.SysUserService;
 import com.msc.fix.lisa.base.AbstractController;
 import com.msc.fix.lisa.base.PageResponse;
 import com.msc.fix.lisa.domain.gateway.system.SysUserGateWay;
-import com.msc.fix.lisa.dto.system.AddUserCmd;
-import com.msc.fix.lisa.dto.system.DeleteIdsCmd;
-import com.msc.fix.lisa.dto.system.SysUserQry;
-import com.msc.fix.lisa.dto.system.UpdateStatusCmd;
+import com.msc.fix.lisa.dto.system.*;
 import com.msc.fix.lisa.dto.system.cto.SysUserCo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -44,9 +41,10 @@ public class SysUserController extends AbstractController {
         return sysUserService.pageList(sysUserQry);
     }
 
-    @ApiOperation(value = "修改账号所在的状态")
+    @ApiOperation(value = "修改账号状态")
     @PostMapping(value = "/updateStatus")
     public SingleResponse updateStatus(@RequestBody UpdateStatusCmd updateStatusCmd) {
+        updateStatusCmd.initUpdate(getPin());
         return sysUserService.updateStatus(updateStatusCmd);
     }
 
@@ -70,5 +68,12 @@ public class SysUserController extends AbstractController {
         String pin = getPin();
         log.info("用户信息为=> {}",pin);
         return sysUserService.deleteIds(deleteIds);
+    }
+
+    @ApiOperation("编辑回显")
+    @PostMapping(value = "/editGetUser")
+    public SingleResponse<SysUserCo> editGetUser(UpdateUserCmd userCmd){
+        userCmd.initUpdate(getPin());
+        return sysUserService.editGetUser(userCmd);
     }
 }
