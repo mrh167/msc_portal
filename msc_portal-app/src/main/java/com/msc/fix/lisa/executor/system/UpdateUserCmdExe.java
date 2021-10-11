@@ -1,8 +1,9 @@
-package com.msc.fix.lisa.executor.query;
+package com.msc.fix.lisa.executor.system;
 
 import com.alibaba.cola.command.Command;
 import com.alibaba.cola.command.CommandExecutorI;
 import com.alibaba.cola.dto.SingleResponse;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.msc.fix.lisa.common.BusinessException;
 import com.msc.fix.lisa.common.CommonUtil;
@@ -12,10 +13,14 @@ import com.msc.fix.lisa.domain.gateway.system.SysUserGateWay;
 import com.msc.fix.lisa.dto.system.UpdateUserCmd;
 import com.msc.fix.lisa.repository.db.dbdo.SysUserDo;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created with IntelliJ IDEA.
@@ -42,7 +47,6 @@ public class UpdateUserCmdExe implements CommandExecutorI<SingleResponse, Update
         wrapper.eq("id",cmd.getId());
         SysUser user = new SysUser();
         user.setAccount(cmd.getAccount());
-        user.setPassword(passwordEncoder.encode(cmd.getPassword()));
         user.setUsername(cmd.getUsername());
         user.setNickName(cmd.getNickName());
         user.setEmail(cmd.getEmail());
@@ -53,4 +57,9 @@ public class UpdateUserCmdExe implements CommandExecutorI<SingleResponse, Update
         sysUserGateWay.update(userEdit,wrapper);
         return SingleResponse.buildSuccess();
     }
+
+
+
+
+
 }

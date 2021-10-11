@@ -1,4 +1,4 @@
-package com.msc.fix.lisa.executor.query.system;
+package com.msc.fix.lisa.executor.system;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.alibaba.cola.command.Command;

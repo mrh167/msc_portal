@@ -1,4 +1,4 @@
-package com.msc.fix.lisa.executor.query.system;
+package com.msc.fix.lisa.executor.system;
 
 import com.alibaba.cola.command.Command;
 import com.alibaba.cola.command.CommandExecutorI;
