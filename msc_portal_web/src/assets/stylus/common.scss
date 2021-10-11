@@ -1,0 +1,279 @@
+// 全局css 样式控制
+@import 'main.scss';
+
+// 表格鼠标划过 show-overflow-tooltip 显示宽度
+.lui-tooltip__popper {
+  font-size: 14px;
+  max-width: 50%;
+} /*设置显示隐藏部分内容，按50%显示*/
+
+//button type=‘primary’ 按钮样式控制
+.lui-button--primary {
+  color: #fff;
+  background-color: $--gl-blue;
+  border-color: $--gl-blue;
+}
+//button type=‘primary’ 按钮划过点击样式控制
+.lui-button--primary:focus,
+.lui-button--primary:hover {
+  background-color: $--gl-hoverBlue !important;
+  border-color: $--gl-hoverBlue !important;
+  color: #fff;
+}
+//表格鼠标划过显示宽度
+.lui-tooltip__popper {
+  font-size: 14px;
+  max-width: 50%;
+} /*设置显示隐藏部分内容，按50%显示*/
+
+//button type=‘primary’ 按钮禁用划过样式控制
+.lui-button--primary.is-disabled,
+.lui-button--primary.is-disabled:active,
+.lui-button--primary.is-disabled:focus,
+.lui-button--primary.is-disabled:hover {
+  color: #fff;
+  background-color: $--gl-blue;
+  border-color: $--gl-blue;
+}
+//button type=‘primary’ 按钮禁用样式控制
+.lui-button--primary.is-disabled {
+  background-color: $--gl-blue;
+  border-color: $--gl-blue;
+  opacity: 0.6;
+}
+//lui-cascader 联级菜单选中样式
+.lui-cascader-node.in-active-path,
+.lui-cascader-node.is-active,
+.lui-cascader-node.is-selectable.in-checked-path {
+  color: $--gl-blue;
+}
+//日历选中样式修改
+.lui-date-table td.current:not(.disabled) span,
+.lui-date-table td.end-date span,
+.lui-date-table td.start-date span {
+  color: #fff;
+  background-color: $--gl-blue;
+}
+//日历按钮样式修改----普通文字按钮颜色
+.lui-button--text {
+  color: $--gl-blue;
+}
+//日历确定按钮样式修改
+.lui-button.is-plain {
+  background: #fff;
+  border-color: $--gl-blue;
+  color: $--gl-blue;
+}
+
+//解决按钮多次点击出现边框
+.lui-radio-button:focus:not(.is-focus):not(:active):not(.is-disabled) {
+  -webkit-box-shadow: 0 0 0 0 #fff;
+  box-shadow: 0 0 0 0 #fff;
+}
+//单选框中心点样式
+.lui-radio__input.is-checked .lui-radio__inner::after {
+  background: $--gl-blue;
+}
+//单选框边线样式
+.lui-radio__input.is-checked .lui-radio__inner {
+  border-color: $--gl-blue;
+}
+//单选框字体颜色
+.lui-radio__input.is-checked + .lui-radio__label {
+  color: $--gl-blue;
+}
+//翻页选中页码颜色
+.lui-pagination.is-background .lui-pager li:not(.disabled).active {
+  background-color: $--gl-blue;
+  color: #fff;
+  border-color: $--gl-blue;
+}
+//滑块样式
+.lui-switch.is-checked .lui-switch__core.afterBg:after {
+  background-color: $--gl-blue;
+}
+//取消表格空数据时下边框线
+.lui-table::before {
+  height: 0px;
+}
+//导航菜单下划线颜色
+.lui-menu--horizontal > .lui-menu-item.is-active {
+  border-bottom: 2px solid $--gl-blue;
+  color: $--gl-blue;
+}
+//导航菜单字体划过颜色
+.lui-menu--horizontal .lui-menu-item:not(.is-disabled):focus,
+.lui-menu--horizontal .lui-menu-item:not(.is-disabled):hover {
+  outline: 0;
+  color: $--gl-blue;
+}
+//tabs 标签切换下划线颜色修改
+.lui-tabs__active-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background-color: $--gl-blue;
+  z-index: 1;
+  -webkit-transition: -webkit-transform 0.3s
+    cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: -webkit-transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+    -webkit-transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  list-style: none;
+}
+.lui-tabs__item:hover {
+  color: $--gl-blue;
+  cursor: pointer;
+}
+//tabs 标签切换字体颜色修改
+.lui-tabs__item.is-active {
+  color: $--gl-blue;
+}
+//单选button 样式
+.lui-radio-button__orig-radio:checked + .lui-radio-button__inner {
+  color: #fff;
+  background-color: $--gl-blue;
+  border-color: $--gl-blue;
+  -webkit-box-shadow: -1px 0 0 0 $--gl-blue;
+  box-shadow: -1px 0 0 0 $--gl-blue;
+}
+//输入框获取焦点颜色样式
+.lui-input__inner:focus {
+  border-color: $--gl-blue;
+}
+//输入框划过焦点颜色样式
+.lui-input__inner:hover {
+  border-color: $--gl-blue;
+}
+//--------------------->输入框远程搜索
+//autocomplete 字体样式
+.lui-autocomplete-suggestion li {
+  color: #666;
+}
+//autocomplete 鼠标划过样式
+.lui-autocomplete-suggestion li:hover {
+  background-color: rgba(13, 108, 162, 0.05);
+}
+.lui-autocomplete-suggestion {
+  border: 1px solid $--gl-blue;
+}
+//----------------------------下拉样式
+//下拉多选checkout选中样式
+.lui-select-dropdown.is-multiple .lui-select-dropdown__item.selected::before {
+  background-color: $--gl-blue;
+  border-color: $--gl-blue;
+}
+//下拉框选中样式
+.lui-select-dropdown__item.selected {
+  color: $--gl-blue;
+}
+.lui-select-dropdown__item.hover,
+.lui-select-dropdown__item:hover {
+  background-color: rgba(13, 108, 162, 0.05);
+}
+//下拉框边框
+.lui-select .lui-input.is-focus .lui-input__inner {
+  border-color: $--gl-blue;
+}
+//---------------------级联
+.lui-cascader .lui-input .lui-input__inner:focus,
+.lui-cascader .lui-input.is-focus .lui-input__inner {
+  border-color: $--gl-blue;
+}
+.lui-cascader-node.in-active-path,
+.lui-cascader-node.is-active,
+.lui-cascader-node.is-selectable.in-checked-path {
+  color: $--gl-blue;
+}
+.lui-cascader-node:not(.is-disabled):focus,
+.lui-cascader-node:not(.is-disabled):hover {
+  background-color: rgba(13, 108, 162, 0.05);
+}
+//---------多选框组
+.lui-checkbox__input.is-indeterminate .lui-checkbox__inner {
+  background-color: $--gl-blue;
+  border-color: $--gl-blue;
+}
+.lui-checkbox__inner:hover {
+  border-color: $--gl-blue;
+}
+.lui-checkbox__input.is-focus .lui-checkbox__inner {
+  border-color: $--gl-blue;
+}
+
+.lui-checkbox__input.is-checked .lui-checkbox__inner {
+  background-color: $--gl-blue;
+  border-color: $--gl-blue;
+}
+//解決表格無數據時樣式
+.lui-checkbox__input.is-disabled.is-checked .lui-checkbox__inner {
+  background-color: #d9d9d9;
+  border-color: #d9d9d9;
+}
+.lui-checkbox__input.is-checked + .lui-checkbox__label {
+  color: $--gl-blue;
+}
+
+.lui-checkbox-button.is-checked:first-child .lui-checkbox-button__inner {
+  //按钮
+  border-left-color: $--gl-blue;
+  background: $--gl-blue;
+}
+
+.lui-radio-button__orig-radio:checked + .lui-radio-button__inner {
+  color: #fff;
+  background-color: $--gl-blue !important;
+  border-color: $--gl-blue;
+  -webkit-box-shadow: -1px 0 0 0 $--gl-blue;
+  box-shadow: -1px 0 0 0 $--gl-blue;
+}
+
+.btnFalses {
+  background-color: $--gl-blue;
+  border-color: $--gl-blue;
+}
+//tabs 左右禁用按钮
+.lui-tabs__nav-prev.is-disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.lui-tabs__nav-next.is-disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+a {
+  color: $--gl-blue;
+}
+.lui-table__body {
+  // 使表格兼容safari，不错位
+  width: 100%;
+  table-layout: fixed !important;
+}
+//控制弹窗层级
+.lui-loading-mask {
+  z-index: 3 !important;
+}
+//下载弹窗文字大小控制
+.downloadClassLoading {
+  z-index: 2000 !important;
+  .lui-loading-spinner {
+    i {
+      font-size: 30px;
+      color: $--gl-blue;
+    }
+    p {
+      margin-top: 16px;
+      font-size: 22px;
+      color: $--gl-blue;
+    }
+  }
+}
+
+.lui-dropdown-menu__item:focus,
+.lui-dropdown-menu__item:not(.is-disabled):hover {
+  background-color: #fff !important;
+  color: $--gl-blue !important;
+}
