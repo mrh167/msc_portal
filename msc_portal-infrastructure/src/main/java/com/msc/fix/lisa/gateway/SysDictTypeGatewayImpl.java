@@ -3,22 +3,31 @@ package com.msc.fix.lisa.gateway;
 import cn.hutool.core.util.ObjectUtil;
 import com.alibaba.cola.dto.SingleResponse;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.msc.fix.lisa.base.YnValueEnum;
 import com.msc.fix.lisa.common.BusinessException;
 import com.msc.fix.lisa.common.CommonUtil;
+import com.msc.fix.lisa.common.enums.DictTypeStatusEnums;
 import com.msc.fix.lisa.domain.common.utils.BeanUtils;
+import com.msc.fix.lisa.domain.entity.system.SysDictData;
 import com.msc.fix.lisa.domain.entity.system.SysDictType;
 import com.msc.fix.lisa.domain.gateway.system.SysDictTypeGateway;
 import com.msc.fix.lisa.dto.system.SysDictTypeAddCmd;
+import com.msc.fix.lisa.dto.system.SysDictTypeEditCmd;
 import com.msc.fix.lisa.dto.system.SysDictTypeQry;
+import com.msc.fix.lisa.dto.system.UpdateStatusDataTypeCmd;
 import com.msc.fix.lisa.enums.SysDictTypeStatusEnums;
+import com.msc.fix.lisa.repository.db.mapper.SysDictDataMapper;
 import com.msc.fix.lisa.repository.db.mapper.SysDictTypeMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -31,6 +40,8 @@ import java.util.Date;
 public class SysDictTypeGatewayImpl extends ServiceImpl<SysDictTypeMapper, SysDictType> implements SysDictTypeGateway {
 
 
+    @Autowired
+    private SysDictDataMapper sysDictDataMapper;
 
     @Override
     public PageInfo<SysDictType> pageList(SysDictTypeQry pageQry) {
@@ -66,6 +77,46 @@ public class SysDictTypeGatewayImpl extends ServiceImpl<SysDictTypeMapper, SysDi
         return SingleResponse.buildSuccess();
     }
 
+    @Override
+    public SingleResponse updateStatusDictData(UpdateStatusDataTypeCmd statusCmd, List<Long> ids) {
+
+        if (ObjectUtil.isNull(ids)) {
+            throw new BusinessException("ids参数为空!!!");
+        }
+
+        for (Long id : ids) {
+            SysDictData sysDictData = new SysDictData();
+            sysDictData.setStatus(statusCmd.getStatus());
+            UpdateWrapper<SysDictData> lamData = new UpdateWrapper<>();
+            lamData.eq("id", id);
+            sysDictDataMapper.update(sysDictData,lamData);
+        }
+        UpdateWrapper<SysDictType> lamType = new UpdateWrapper<>();
+        SysDictType type = new SysDictType();
+        type.setStatus(statusCmd.getStatus());
+        lamType.eq("id",statusCmd.getId());
+        this.update(type,lamType);
+        return SingleResponse.buildSuccess();
+    }
+
+    @Override
+    public SingleResponse edit(SysDictTypeEditCmd cmd) {
+        if (ObjectUtil.isNull(cmd)) {
+            return null;
+        }
+        SysDictTypeAddCmd typeAddCmd = BeanUtils.convert(cmd, SysDictTypeAddCmd.class);
+        checkParams(typeAddCmd,true);
+        SysDictType dictType = new SysDictType();
+        dictType.setId(cmd.getId());
+        dictType.setName(cmd.getName());
+        dictType.setCode(cmd.getCode());
+        dictType.setStatus(cmd.getStatus());
+        dictType.setRemark(cmd.getRemark());
+        CommonUtil.fillByUpdate(new Date(),cmd.getPin(),dictType);
+        this.updateById(dictType);
+        return SingleResponse.buildSuccess();
+    }
+
 
     /**
      * 校验类型参数
@@ -73,7 +124,7 @@ public class SysDictTypeGatewayImpl extends ServiceImpl<SysDictTypeMapper, SysDi
      * @param isExcludeSelf
      */
     private void checkParams(SysDictTypeAddCmd cmd,boolean isExcludeSelf) {
-        Integer id = cmd.getId();
+        Long id = cmd.getId();
         String name = cmd.getName();
         String code = cmd.getCode();
 

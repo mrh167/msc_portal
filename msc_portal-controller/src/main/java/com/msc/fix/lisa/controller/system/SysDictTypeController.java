@@ -4,10 +4,8 @@ import com.alibaba.cola.dto.SingleResponse;
 import com.msc.fix.lisa.api.system.SysDictTypeService;
 import com.msc.fix.lisa.base.AbstractController;
 import com.msc.fix.lisa.base.PageResponse;
-import com.msc.fix.lisa.dto.system.SysDictTypeAddCmd;
-import com.msc.fix.lisa.dto.system.SysDictTypeQry;
+import com.msc.fix.lisa.dto.system.*;
 import com.msc.fix.lisa.dto.system.cto.SysDictTypeCo;
-import com.msc.fix.lisa.dto.system.SysDictTypeDeleteCmd;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,13 +44,27 @@ public class SysDictTypeController extends AbstractController {
         return sysDictTypeService.add(sysDictTypeAddCmd);
     }
 
-
-
-
     @ApiOperation("手工删除")
     @PostMapping("/sysDictType/deleteBatch")
     public SingleResponse deleteBatch(@RequestBody SysDictTypeDeleteCmd sysDictTypeDeleteCmd){
         sysDictTypeDeleteCmd.initUpdate(getPin());
         return sysDictTypeService.deleteBatch(sysDictTypeDeleteCmd);
     }
+
+    @ApiOperation("类型状态修改")
+    @PostMapping("sysDictType/updateStatus")
+    public SingleResponse updateStatus(@RequestBody UpdateStatusDataTypeCmd dataTypeCmd){
+        return sysDictTypeService.updateStatus(dataTypeCmd);
+    }
+
+    @ApiOperation("字典类型编辑")
+    @PostMapping("/sysDictType/edit")
+    public SingleResponse edit(@RequestBody SysDictTypeEditCmd sysDictTypeEdit){
+        sysDictTypeEdit.initUpdate(getPin());
+        return sysDictTypeService.edit(sysDictTypeEdit);
+    }
+
+
+
+
 }

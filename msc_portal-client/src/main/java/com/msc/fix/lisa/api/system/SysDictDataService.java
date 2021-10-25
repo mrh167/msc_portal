@@ -3,6 +3,7 @@ package com.msc.fix.lisa.api.system;
 import com.alibaba.cola.dto.SingleResponse;
 import com.msc.fix.lisa.base.PageResponse;
 import com.msc.fix.lisa.dto.system.SysDictDataQry;
+import com.msc.fix.lisa.dto.system.UpdateStatusDataTypeCmd;
 import com.msc.fix.lisa.dto.system.cto.SysDictDataCo;
 
 /**
@@ -15,4 +16,6 @@ import com.msc.fix.lisa.dto.system.cto.SysDictDataCo;
 public interface SysDictDataService {
 
     PageResponse<SysDictDataCo> pageList(SysDictDataQry sysDictDataQry);
+
+    SingleResponse updateStatus(UpdateStatusDataTypeCmd statusDataTypeCmd);
 }

@@ -4,6 +4,7 @@ import com.alibaba.cola.dto.SingleResponse;
 import com.msc.fix.lisa.api.system.SysDictDataService;
 import com.msc.fix.lisa.base.PageResponse;
 import com.msc.fix.lisa.dto.system.SysDictDataQry;
+import com.msc.fix.lisa.dto.system.UpdateStatusDataTypeCmd;
 import com.msc.fix.lisa.dto.system.cto.SysDictDataCo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,5 +35,11 @@ public class SysDictDataController {
     @PostMapping("/sysDictData/pageList")
     public PageResponse<SysDictDataCo> pageList(@RequestBody SysDictDataQry sysDictDataQry){
         return sysDictDataService.pageList(sysDictDataQry);
+    }
+
+    @ApiOperation("字典数据状态修改")
+    @PostMapping("/sysDictData/updateStatus")
+    public SingleResponse updateStatus(@RequestBody UpdateStatusDataTypeCmd statusDataTypeCmd){
+        return sysDictDataService.updateStatus(statusDataTypeCmd);
     }
 }

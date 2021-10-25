@@ -9,12 +9,12 @@ import lombok.Data;
 /**
  * Created with IntelliJ IDEA.
  * User: ext.maruihua1
- * Date: 2021/9/30
- * Time: 13:42
+ * Date: 2021/10/18
+ * Time: 19:08
  * Description: No Description
  */
 @Data
-public class SysDictTypeAddCmd extends AbstractCommand {
+public class SysDictTypeEditCmd extends AbstractCommand {
 
     /**
      * 主键
@@ -52,4 +52,5 @@ public class SysDictTypeAddCmd extends AbstractCommand {
      */
     @ApiModelProperty(value = "状态（字典 0正常 1停用 2删除）")
     private Integer status;
+
 }

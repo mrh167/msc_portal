@@ -2,9 +2,7 @@ package com.msc.fix.lisa.api.system;
 
 import com.alibaba.cola.dto.SingleResponse;
 import com.msc.fix.lisa.base.PageResponse;
-import com.msc.fix.lisa.dto.system.SysDictTypeAddCmd;
-import com.msc.fix.lisa.dto.system.SysDictTypeDeleteCmd;
-import com.msc.fix.lisa.dto.system.SysDictTypeQry;
+import com.msc.fix.lisa.dto.system.*;
 import com.msc.fix.lisa.dto.system.cto.SysDictTypeCo;
 
 /**
@@ -20,4 +18,8 @@ public interface SysDictTypeService {
     SingleResponse add(SysDictTypeAddCmd sysDictTypeAddCmd);
 
     SingleResponse deleteBatch(SysDictTypeDeleteCmd sysDictTypeDeleteCmd);
+
+    SingleResponse updateStatus(UpdateStatusDataTypeCmd dataTypeCmd);
+
+    SingleResponse edit(SysDictTypeEditCmd sysDictTypeEdit);
 }

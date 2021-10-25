@@ -1,5 +1,7 @@
 package com.msc.fix.lisa.domain.entity.system;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.fastjson.serializer.ToStringSerializer;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -7,6 +9,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.msc.fix.lisa.domain.po.BasePo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,11 +25,11 @@ import lombok.EqualsAndHashCode;
 @Data
 @TableName("sys_dict_type")
 @EqualsAndHashCode(callSuper = false)
-public class SysDictType extends BasePo implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class SysDictType extends BasePo {
 	/**
 	 * 主键
 	 */
+	@JSONField(serializeUsing= ToStringSerializer.class)
 	@TableId(type = IdType.AUTO)
 	private Long id;
 	/**

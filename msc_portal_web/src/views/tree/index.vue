@@ -109,7 +109,8 @@
     <!-- </div> -->
     <addType
       v-if="getSellerBtnType===1"
-      @getList="getList"
+      :form-data="formData"
+      :msg.sync="msg"
       @func="childenClick"
     />
     <dictionary
@@ -246,6 +247,7 @@ export default {
         }
       ],
       listShow: true,
+      formData: {},
       // 手工添加页面
       addSellerShow: false,
       // 添加用户
@@ -365,11 +367,18 @@ export default {
     },
     // 手工添加
     handleAddClick() {
+      this.formData = {
+        name: '',
+        code: '',
+        sort: '',
+        remark: ''
+      }
+      this.msg = '添加字典类型'
       this.$store.dispatch('sellerBtnType', 1)
     },
     getList() {
       this.listLoading = true
-      Api.Dict.pageList({
+      Api.DictType.pageList({
         'pageNum': this.pageNum,
         'pageSize': this.pageSize,
         ...this.serchData
@@ -416,8 +425,9 @@ export default {
       this.$store.dispatch('portalSellerNo', row.account)
     },
     editHandle(index, row) {
-      this.editList = [row]
-      this.$store.dispatch('sellerBtnType', 5)
+      this.formData = row
+      this.msg = '编辑'
+      this.$store.dispatch('sellerBtnType', 1)
     //   this.$$store.dispatch('portalSellerNo', row.account)
     },
 

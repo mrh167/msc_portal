@@ -1,5 +1,7 @@
 package com.msc.fix.lisa.domain.entity.system;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.fastjson.serializer.ToStringSerializer;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -23,6 +25,7 @@ public class SysDictData implements Serializable {
 	/**
 	 * 主键
 	 */
+	@JSONField(serializeUsing= ToStringSerializer.class)
 	@TableId(type = IdType.AUTO)
 	private Long id;
 	/**
