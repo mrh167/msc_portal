@@ -7,7 +7,7 @@ export default [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/index'),
-      meta: { title: '首页', icon: 'dashboard' }
+      meta: { title: '首页', icon: 'dashboard', affix: true }
     }]
   }
 ]

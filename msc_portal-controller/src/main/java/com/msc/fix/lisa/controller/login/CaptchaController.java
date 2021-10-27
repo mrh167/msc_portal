@@ -1,4 +1,4 @@
-package com.msc.fix.lisa.controller.system.login;
+package com.msc.fix.lisa.controller.login;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import io.swagger.annotations.Api;

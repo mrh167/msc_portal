@@ -125,6 +125,11 @@ export default {
           }
         } else {
           if (valid) {
+            let formParams = {
+                id: this.form.id,
+                
+            }
+
             Api.DictType.edit(this.form).then(res => {
               console.log('form=====', this.form)
               if (res.success) {

@@ -10,6 +10,7 @@ import menu from './modules/menu'
 import business from './modules/business'
 import mutations from './mutations'
 import actions from './actions'
+import tagsView from './modules/tagsView'
 
 Vue.use(Vuex)
 
@@ -20,7 +21,8 @@ const store = new Vuex.Store({
     user,
     menu,
     permission,
-    business
+    business,
+    tagsView
   },
   state,
   mutations,
