@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Login from './login'
 import Dashboard from './dashboard'
 import UserManager from './userManager'
+
 Vue.use(Router)
 
 /* Layout */

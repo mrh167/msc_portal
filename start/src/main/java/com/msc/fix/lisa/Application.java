@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * @author Frank Zhang
  */
+
 //不使用   @SpringBootApplication 避免被宿主机的自动配置所干扰
 @SpringBootApplication(scanBasePackages = {"com.msc.fix.lisa","com.alibaba.cola","com.msc.fix.lisa.mybatiscn"})
 //@ComponentScan(basePackages = {"com.msc.fix.lisa.mybatiscn"})
