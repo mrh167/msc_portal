@@ -1,12 +1,8 @@
 package com.msc.fix.lisa.config;
 
 import org.apache.http.HttpHost;
-import org.apache.http.client.config.RequestConfig.Builder;
-import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
-import org.elasticsearch.client.RestClientBuilder.HttpClientConfigCallback;
-import org.elasticsearch.client.RestClientBuilder.RequestConfigCallback;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,14 +24,14 @@ public class EsConfiguration {
 	private static final int maxConnectNum = 100; // 最大连接数
 	private static final int maxConnectPerRoute = 100; // 最大路由连接数
 	 
-	static {
+	static	{
 		hostList = new ArrayList<>();
 		String[] hostStrs = hosts.split(",");
 		for (String host : hostStrs) {
 			hostList.add(new HttpHost(host, port, schema));
 		}
 	}
-	 
+
 	@Bean
 	public RestHighLevelClient client() {
 		RestClientBuilder builder = RestClient.builder(hostList.toArray(new HttpHost[0]));
@@ -52,8 +48,7 @@ public class EsConfiguration {
 			httpClientBuilder.setMaxConnPerRoute(maxConnectPerRoute);
 			return httpClientBuilder;
 		});
-		RestHighLevelClient client = new RestHighLevelClient(builder);
-		return client;
+		return  new RestHighLevelClient(builder);
 	}
- 
+
 }

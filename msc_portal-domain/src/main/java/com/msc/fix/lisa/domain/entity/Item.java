@@ -9,4 +9,5 @@ package com.msc.fix.lisa.domain.entity;
  */
 
 public class Item {
+
 }
