@@ -4,7 +4,7 @@
     <div class="information-nav">
       <div class="font-sty"><b>Elasticsearch</b></div>
       <div class="input-sty">
-        <el-input v-model="input3" placeholder="请输入内容" class="el-input-inner el-input-group">
+        <el-input v-model="ipAddress" placeholder="请输入内容" class="el-input-inner el-input-group">
           <el-button slot="append">连接</el-button>
         </el-input>
       </div>
@@ -32,6 +32,8 @@ export default {
   },
   data() {
     return {
+      ipAddress: '',
+      loading: false,
       activeName: 'first'
     }
   },

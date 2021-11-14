@@ -5,6 +5,7 @@ import Login from './login'
 import Dashboard from './dashboard'
 import UserManager from './userManager'
 import esHead from './elasticHead'
+import testMenu from './testMenu'
 
 Vue.use(Router)
 
@@ -35,7 +36,7 @@ Vue.use(Router)
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
-const routes = [...Login, ...Dashboard, ...UserManager, ...esHead]
+const routes = [...Login, ...Dashboard, ...UserManager, ...esHead, ...testMenu]
 
 // const router = new Router({
 //   // mode: 'history',

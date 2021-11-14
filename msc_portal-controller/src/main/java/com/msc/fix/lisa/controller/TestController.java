@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: ext.maruihua1
@@ -18,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Time: 18:44
  * Description: No Description
  */
-@Api(tags = "测试注册")
+@Api(tags = "ES测试用例")
 @RestController
 public class TestController {
 
@@ -50,4 +52,12 @@ public class TestController {
 //        sysUserMapper.insert(user);
        return SingleResponse.buildSuccess();
     }
+
+//    @PostMapping(value = "/EsBetweenFindAll")
+//    public SingleResponse<List<>>
+
+
+
+
+
 }
