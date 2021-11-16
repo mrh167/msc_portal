@@ -1,22 +1,14 @@
+/* eslint-disable vue/order-in-components */
 /* eslint-disable vue/valid-v-model */
 <template>
   <div v-loading="loading">
     <div class="container-content">
-
-      <!--
-        <el-row v-for="arr in indexArray" :key="arr" :gutter="35" justify="space-around">
-          <el-col :span="10" :offset="6"><div class="grid-content bg-purple">  {{ arr }}   </div></el-col>
-        </el-row>
-      -->
       <div class="information-sty">
-        <div class="_idnexSty">
-          <el-row :gutter="100">
-            <el-col v-for="arr in indexArray" :key="arr" :span="6">
-              <div class="grid-content bg-purple">
-                <el-button type="text" @click="queryIndex(arr)">{{ arr }}</el-button>
-              </div>
-            </el-col>
-          </el-row>
+        <div class="addcontent">
+          <div v-for="arr in indexArray" :key="arr" :class="true ? 'addcontenta' : 'highlight'">
+            <!-- <span class="addcontentb">{{ arr }}</span> -->
+            <el-button type="text" class="addcontentb" @click="queryIndex(arr)"> {{ arr }} </el-button>
+          </div>
         </div>
       </div>
 
@@ -36,97 +28,90 @@
             align="center"
           />
 
-          <input
-            type="hidden"
-            prop="id"
-          >
           <el-table-column
-            prop="account"
-            label="账号"
+            prop="_id"
+            label="_id"
           />
           <el-table-column
-            prop="username"
-            label="用户名"
+            prop="_index"
+            label="_index"
           />
           <el-table-column
-            prop="nickName"
-            label="昵称"
+            prop="_score"
+            label="_score"
           />
-          <el-table-column
-            prop="phone"
-            label="电话"
-          />
-          <el-table-column
-            prop="email"
-            label="邮箱"
-          />
-          <el-table-column
-            prop="status"
-            width="90"
-            label="状态"
-          >
-            <template slot-scope="scope">
-              <el-tag :type="scope.row.status===true?'success':(scope.row.status===false?'info':'')">{{ scope.row.status=== true?'正常':'禁用' }}</el-tag>
-            </template>
-          </el-table-column>
-          <el-table-column
-            prop="status"
-            width="90"
-            label="状态修改"
-          >
-            <template slot-scope="scope">
-              <el-switch
-                v-model="scope.row.status"
-                active-circle-class="1"
-                active-color="#409EFF"
-                inactive-color="#C0CCDA"
-                @change="changeStatusTab(scope.row)"
-              />
-            </template>
-          </el-table-column>
           <el-table-column
             fixed="right"
             label="操作"
           >
             <template slot-scope="scope">
-              <el-button type="text" @click="lookHandle(scope.$index, scope.row)">查看</el-button>
-              <el-button type="text" size="small" @click="editHandle(scope.$index,scope.row)">编辑</el-button>
+              <el-button type="text" @click="lookHandle(scope.$index, scope.row)">查看索引</el-button>
+              <!-- <el-button type="text" size="small" @click="editHandle(scope.$index,scope.row)">编辑</el-button> -->
             </template>
           </el-table-column>
         </el-table>
 
       </div>
     </div>
+    <lookIndex
+      v-if="getSellerBtnType===1"
+      :look-list="lookList"
+    />
   </div>
 
 </template>
 <script>
 import Api from '@/api'
+import qs from 'qs'
+import { mapGetters } from 'vuex'
+import lookIndex from './lookIndex.vue'
 
 export default {
   components: {
-
+    lookIndex
   },
   data() {
     return {
       list: [],
+      lookList: [],
       loading: false,
       listLoading: false,
       indexArray: []
     }
   },
+  computed: {
+    ...mapGetters(['getSellerBtnType', 'getPortalSellerNo'])
+  },
   mounted() {
     this.getIndexList()
   },
+
   methods: {
+
+    // 查看索引的方法
+    lookHandle(index, row) {
+      this.lookList = [row._source]
+      console.log('lookList=======', this.lookList)
+      this.$store.dispatch('sellerBtnType', 1)
+    //   this.$store.dispatch('portalSellerNo', row.account)
+    },
     // 多选
     handleSelectionChange(val) {
       this.multipleSelection = val
     },
 
     // 根据索引名称查询当前索引的详细信息
-    queryIndex(indexQry) {
-      console.log('indexQry========', indexQry)
+    queryIndex(index) {
+      const params = {
+        index
+      }
+      Api.findAllIndex.matchAllQuery(params).then(res => {
+        if (res.success) {
+          console.log('res========', res)
+          this.list = res.data
+        }
+      })
+      console.log('indexQry========', index)
     },
 
     // 获取所有索引库的集合
@@ -193,5 +178,36 @@ export default {
     padding: 10px 0;
     background-color: #f9fafc;
   }
+.addcontent {
+display: flex;
+margin-top: 10px;
+flex-wrap: nowrap;
+}
+.addcontenta{
+cursor: pointer;
+position:relative;
+width: 180px;
+height:32px;
+background:#EEF4F8 ;
+line-height:32px;
+text-align:center;
+border-radius: 4px;
+margin-right:20px;
+margin-bottom:10px;
+};
+.addcontentb{
+overflow: hidden;
+margin-left:10px;
+padding-right:10px;
+};
+._idnexSty{
+width: 100%;
+height:100%;
+}
+.active {
+   background: #fd7522;
+   border: 1px solid #fd7522;
+   color: #fff;
+ };
 
 </style>

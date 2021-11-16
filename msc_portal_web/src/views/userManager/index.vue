@@ -508,7 +508,7 @@ export default {
     childenClick() {
       this.getList()
     },
-    // 添加用户的方法
+    // 查看用户的方法
     lookHandle(index, row) {
       this.lookList = [row]
       this.$store.dispatch('sellerBtnType', 2)

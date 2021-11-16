@@ -57,8 +57,8 @@ axios.interceptors.request.use(
       }
       config.params = newParams
       config.headers = {
-        'Content-Type': 'application/json;charset=UTF-8'
-
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Authorization': 'msc ' + window.sessionStorage.getItem('msc')
       }
     }
 

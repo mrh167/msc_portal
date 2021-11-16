@@ -423,7 +423,6 @@ detaillist(code) {
     },
     // 添加菜单
     addBaselist(code) {
-
       if (this.baseArray.length < 24) {
         this.list = this.lookID(this.list, code)
         this.initBaseArray(this.baseArray)
@@ -437,7 +436,6 @@ detaillist(code) {
         if (ev.code === code) {
           ev.top = true
           this.baseArray = this.baseArray.concat(ev)
-          console.log('baseArray============', this.baseArray)
           this.initBaseArray(this.baseArray)
         } else if (ev.children) {
           this.lookID(ev.children, code)
